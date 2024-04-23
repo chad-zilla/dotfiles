@@ -1,0 +1,22 @@
+#!/bin/bash
+
+OS_TYPE=$(uname)
+
+pushd $DOTFILES
+
+if [[ "$OS_TYPE" == "Darwin" ]]; then
+    # macOS specific stow commands
+    stow iterm2
+    stow macos
+elif [[ "$OS_TYPE" == "Linux" ]]; then
+    # Linux specific stow commands
+    stow ubuntu
+    stow linux-apps
+fi
+
+# General applications common across platforms
+stow vim
+stow tmux
+stow bash
+
+popd
