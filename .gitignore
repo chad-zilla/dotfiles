@@ -1,0 +1,7 @@
+# Ignore Tmux log files
+tmux/*.log
+
+# Ignore other unwanted files
+*.tmp  # Temporary files
+.DS_Store  # macOS metadata files
+*.bak  # Backup files
