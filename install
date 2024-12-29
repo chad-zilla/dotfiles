@@ -1,22 +1,17 @@
 #!/bin/bash
 
-OS_TYPE=$(uname)
+# Define the DOTFILES directory
+DOTFILES="$HOME/dotfiles"
 
-pushd $DOTFILES
+# Navigate to the dotfiles directory
+pushd "$DOTFILES" || exit
 
-if [[ "$OS_TYPE" == "Darwin" ]]; then
-    # macOS specific stow commands
-    stow iterm2
-    stow macos
-elif [[ "$OS_TYPE" == "Linux" ]]; then
-    # Linux specific stow commands
-    stow ubuntu
-    stow linux-apps
-fi
+# Stow all relevant configurations
+stow -t ~/.config nvim  # LazyVim configuration
+stow tmux               # Tmux configuration
+stow zsh                # Zsh configuration
+stow -t ~/.config ghostty  # Ghostty configuration
 
-# General applications common across platforms
-stow vim
-stow tmux
-stow bash
+# Return to the previous directory
+popd || exit
 
-popd
